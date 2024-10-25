@@ -89,9 +89,11 @@ jobs:
             - name: "Check incorrect PR names"
               run: |
                   while IFS= read -r pr_name; do
-                  docker run --rm local/pr-name-validator-pr:latest "$pr_name";
+                  if docker run --rm local/pr-name-validator-pr:latest "$pr_name"; then
+                  echo "Validation unexpectedly succeeded for PR name '$pr_name'!" >&2
+                  exit 1
+                  fi
                   done < ${{ github.workspace }}/tests/incorrect_pr_names.txt
-                  && { echo 'Incorrect PR names test must fail!' >&2; exit 1; } || exit 0
 
             - name: "Run Dockerfile security scanner"
               run: "docker run --rm --group-add $(getent group docker | cut -d: -f3)
