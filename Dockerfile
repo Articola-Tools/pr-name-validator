@@ -1,4 +1,4 @@
-FROM golang:1.22.8 AS build
+FROM golang:1.23.2 AS build
 
 COPY ./ /pr-name-validator
 
