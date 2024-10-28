@@ -13,4 +13,4 @@ Use `ghcr.io/articola-tools/pr-name-validator` Docker image with one string
 argument that represents PR name to validate.
 
 Example command to use this linter -
-`docker run --rm -v ghcr.io/articola-tools/pr-name-validator "PR-123"`
+`docker run --rm ghcr.io/articola-tools/pr-name-validator "PR-123"`
